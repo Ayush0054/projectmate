@@ -8,12 +8,12 @@ import portfolio_image from './assets/portfolio.jpg';
 
 export const guide_steps = [
   {
-    title: 'join us',
-    desc: 'you can easily sign up in 30 seconds using your social accounts',
+    title: 'register',
+    desc: 'you can easily sign up in 10 seconds using your social accounts',
     Icon: AiOutlineUsergroupAdd,
   },
   {
-    title: 'exploration',
+    title: 'explore',
     desc: 'ready for an adventure ? start browsing the projects section',
     Icon: FiSearch,
   },
@@ -23,8 +23,8 @@ export const guide_steps = [
     Icon: AiOutlineLaptop,
   },
   {
-    title: 'contribution',
-    desc: 'now that you picked up a project, you can start contributing to it',
+    title: 'contribute',
+    desc: 'you can start contributing or get contributors for your project',
     Icon: HiOutlineCode,
   },
 ];
@@ -34,7 +34,7 @@ export const benefits_data = [
     image_src: learning_image,
     image_alt: 'programmer looking at his monitor',
     title: 'Learning from and within the community',
-    desc: '  Working in an open source environment makes the developers part of the global open source community. It allows them to use the work andknowledge of others by using open source libraries or by checking other publicly available code for logics that the developer wants to implement.',
+    desc: '  Working in an open source environment makes the developers part of the global open source community. It allows them to use the work and knowledge of others by using open source libraries or by checking other publicly available code for logics that the developer wants to implement.',
   },
 
   {

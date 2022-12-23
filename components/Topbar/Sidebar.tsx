@@ -11,10 +11,17 @@ import { Logo } from './Logo';
 import { SidebarAvatar } from '@/components/Avatar';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { signOut, useSession } from 'next-auth/react';
+import { MdPostAdd } from 'react-icons/md';
+import { messageType, toastMessage } from 'shared';
+import { useAppDispatch } from '../../app/hooks';
+import { openModal } from '@/store/slices/sliceModal';
+import { Button } from '@/components/Button';
+import { GiClick } from 'react-icons/gi';
 
 export const Sidebar = () => {
   const [open, setOpen] = useState(false);
-  const { pathname } = useRouter();
+  const router = useRouter();
+  const { pathname } = router;
   const ref = useRef(null);
   const { data: session } = useSession();
 
@@ -23,6 +30,17 @@ export const Sidebar = () => {
   useOnClickOutside(ref, closeSidebar);
 
   const socialLinks = getSocialLinks(true);
+
+  const gotoSubmitPage = () => {
+    if (session) {
+      router.push('/projects/submit');
+    } else {
+      toastMessage('Please login/register first', messageType.error);
+    }
+  };
+
+  const dispatch = useAppDispatch();
+  const handleModal = () => dispatch(openModal());
 
   const RenderNavigation: React.FC<{ routes: IRoute[] }> = ({ routes }) => {
     return (
@@ -33,16 +51,17 @@ export const Sidebar = () => {
 
           return (
             <motion.li whileTap={{ scale: 0.9 }} key={title}>
-              <Link href={url}>
-                <a
-                  {...anchorTagProps}
-                  className={`flex items-center justify-between gap-2 p-5 text-lg uppercase ${
-                    isCurrent && 'bg-background-2'
-                  }`}
-                >
+              <Link
+                href={url}
+                {...anchorTagProps}
+                className={`flex items-center justify-between gap-2 p-5 text-lg uppercase ${
+                  isCurrent && 'bg-background-2'
+                }`}
+              >
+                <>
                   {title}
                   <Icon className="text-2xl" />
-                </a>
+                </>
               </Link>
             </motion.li>
           );
@@ -100,6 +119,22 @@ export const Sidebar = () => {
                 >
                   Logout
                   <HiOutlineLogout className="text-2xl" />
+                </button>
+              )}
+              <button
+                className="flex w-full items-center justify-between gap-2 p-5 text-lg uppercase"
+                onClick={gotoSubmitPage}
+              >
+                Submit project
+                <MdPostAdd className="text-2xl" />
+              </button>
+              {session === null && (
+                <button
+                  onClick={handleModal}
+                  className="flex w-full items-center justify-between gap-2 p-5 text-lg uppercase"
+                >
+                  Login
+                  <GiClick className="text-2xl" />
                 </button>
               )}
             </motion.div>

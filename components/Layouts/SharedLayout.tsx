@@ -20,7 +20,7 @@ export const SharedLayout: React.FC<IProps> = ({
   return (
     <>
       <Head>
-        <title>Projectmate | {title}</title>
+        <title>{`Projectmate | ${title}`}</title>
         <link rel="icon" href="/dark-logo.svg" />
       </Head>
       <Topbar />
@@ -31,7 +31,7 @@ export const SharedLayout: React.FC<IProps> = ({
         <footer className="sticky top-[100%] border-t px-5 py-10 text-center dark:border-gray-800">
           This project is published under{' '}
           <a
-            className="font-bold"
+            className="font-bold underline"
             href="https://github.com/rohitdasu/projectmate/blob/main/LICENSE"
             target="_blank"
             rel="noreferrer"
