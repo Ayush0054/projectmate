@@ -17,7 +17,7 @@ export default async function handler(
   switch (req.method) {
     case 'GET':
       const { limit, cursorId } = req.query;
-      const projectLimit: number = Number(limit) || 10;
+      const projectLimit: number = Number(limit) || 4;
       try {
         const data = await getAllProject({
           limit: projectLimit,
@@ -104,6 +104,7 @@ async function getAllProject(args: { limit: number; cursorId?: string }) {
       author: {
         select: {
           name: true,
+          image: true,
         },
       },
     };
@@ -151,21 +152,6 @@ async function addProject(args: {
     email,
   } = args;
   try {
-    console.log({
-      data: {
-        title,
-        description,
-        content,
-        githubRepository,
-        tags,
-        coverImg,
-        author: {
-          connect: {
-            email: email,
-          },
-        },
-      },
-    });
     const data = await prisma.project.create({
       data: {
         title,

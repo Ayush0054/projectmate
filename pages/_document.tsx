@@ -1,39 +1,47 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import React from 'react';
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-  DocumentInitialProps,
-} from 'next/document';
-import { extractCritical } from '@emotion/server';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(
-    ctx: DocumentContext
-  ): Promise<DocumentInitialProps> {
-    const initialProps = await Document.getInitialProps(ctx);
-    const critical = extractCritical(initialProps.html);
-    initialProps.html = critical.html;
-    initialProps.styles = (
-      <React.Fragment>
-        {initialProps.styles}
-        <style
-          data-emotion-css={critical.ids.join(' ')}
-          dangerouslySetInnerHTML={{ __html: critical.css }}
-        />
-      </React.Fragment>
-    );
-
-    return initialProps;
-  }
-
   render() {
     return (
       <Html lang="en">
         <Head>
+          <meta
+            name="description"
+            content="Discover open-source projects, connect with experienced maintainers, and collaborate with a community of passionate contributors. Join over 150 registered users who are already making a difference"
+          />
+          <meta
+            name="keywords"
+            content="opensource, github, reactjs, nextjs, technology"
+          />
+          <meta name="robots" content="index,follow" />
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="language" content="English" />
+          <meta name="revisit-after" content="2 days" />
+          <meta name="author" content="Rohit Dasu" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://www.projectmate.net/" />
+          <meta
+            property="og:title"
+            content="Supercharge your open-source contributions with projectmate.net"
+          />
+          <meta
+            property="og:description"
+            content="Discover open-source projects, connect with experienced maintainers, and collaborate with a community of passionate contributors. Join over 150 registered users who are already making a difference"
+          />
+          <meta property="og:image" content="/og.jpg" />
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content="https://www.projectmate.net/" />
+          <meta
+            property="twitter:title"
+            content="Supercharge your open-source contributions with projectmate.net"
+          />
+          <meta
+            property="twitter:description"
+            content="Discover open-source projects, connect with experienced maintainers, and collaborate with a community of passionate contributors. Join over 150 registered users who are already making a difference"
+          />
+          <meta property="twitter:image" content="/og.jpg" />
           <script
             dangerouslySetInnerHTML={{
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -43,8 +51,20 @@ export default class MyDocument extends Document {
               })(window,document,'script','dataLayer','GTM-KSS8T4M');`,
             }}
           />
+          {/* fonts */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@100;300;400;700;900&display=swap"
+            rel="stylesheet"
+          />
+          {/* /fonts */}
         </Head>
-        <body className="bg-background-1">
+        <body className="bg-primary-background">
           <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-KSS8T4M"
@@ -53,7 +73,6 @@ export default class MyDocument extends Document {
               style={{ display: 'none', visibility: 'hidden' }}
             ></iframe>
           </noscript>
-
           <Main />
           <NextScript />
         </body>

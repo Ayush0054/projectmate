@@ -1,19 +1,17 @@
 import React from 'react';
-import {
-  // Search,
-  ProjectsList,
-  SharedLayout,
-} from '../../components';
+import { ProjectsList } from '@/components/ProjectsPage/ProjectsList';
+import { SharedLayout } from '@/components/Layouts';
+
 const Projects = () => {
   return (
-    <SharedLayout title="Projects" hideFooter>
-      <div className="flex flex-col">
-        {/* <div className="sticky top-0 z-10 bg-yellow-400 backdrop-blur-3xl">
-          <Search />
-        </div> */}
+    <div className="flex min-h-screen flex-col">
+      <header className="sr-only">
+        <h1>Projects</h1>
+      </header>
+      <SharedLayout title="Projects">
         <ProjectsList />
-      </div>
-    </SharedLayout>
+      </SharedLayout>
+    </div>
   );
 };
 
